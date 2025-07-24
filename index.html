@@ -12,6 +12,13 @@
       align-items: center;
       height: 100vh;
       flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      color: #333;
+      font-size: 28px;
     }
 
     #pedra {
@@ -28,7 +35,6 @@
 
     #mensagem {
       display: none;
-      text-align: center;
       margin-top: 20px;
       animation: aparecer 0.5s ease forwards;
     }
@@ -51,6 +57,17 @@
       background-color: #d0e0ff;
     }
 
+    #resposta {
+      margin-top: 15px;
+      font-size: 18px;
+    }
+
+    #imagem-surpresa {
+      margin-top: 20px;
+      display: none;
+      max-width: 300px;
+    }
+
     @keyframes aparecer {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -59,10 +76,12 @@
 </head>
 <body>
 
+  <h1>Clique na pedra para descobrir algo!</h1>
+
   <img id="pedra" src="pedra_1.png" alt="Pedra">
 
   <div id="mensagem">
-    <h2>Quer sair comigo? 💘</h2>
+    <h2>Quer sair comigo? 🪨🔨</h2>
     <div class="botoes">
       <button onclick="responder('sim')">Sim!</button>
       <button onclick="responder('nao')">Não 😢</button>
@@ -70,10 +89,13 @@
     <p id="resposta"></p>
   </div>
 
+  <img id="imagem-surpresa" src="surpresa.png" alt="Surpresa">
+
   <script>
     const pedra = document.getElementById('pedra');
     const mensagem = document.getElementById('mensagem');
     const resposta = document.getElementById('resposta');
+    const imagemSurpresa = document.getElementById('imagem-surpresa');
     let cliqueCount = 0;
 
     pedra.addEventListener('click', () => {
@@ -94,8 +116,9 @@
     function responder(opcao) {
       if (opcao === 'sim') {
         resposta.innerText = 'Dale! 💖';
+        imagemSurpresa.style.display = 'block'; // mostra imagem surpresa
       } else {
-        resposta.innerText = 'Tudo bem... 😢';
+        resposta.innerText = 'Quem não arrisca não petisca ahsuahs 😢';
       }
     }
   </script>
