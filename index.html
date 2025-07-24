@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedra do Amor</title>
+  <style>
+    body {
+      background-color: #f0f8ff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    #pedra {
+      width: 300px;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+
+    #pedra:hover {
+      transform: scale(1.05);
+    }
+
+    #mensagem {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      animation: aparecer 0.5s ease forwards;
+    }
+
+    .botoes {
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 5px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d0e0ff;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <img id="pedra" src="pedra_1.png" alt="Pedra">
+
+  <div id="mensagem">
+    <h2>Quer sair comigo? 💘</h2>
+    <div class="botoes">
+      <button onclick="responder('sim')">Sim!</button>
+      <button onclick="responder('nao')">Não 😢</button>
+    </div>
+    <p id="resposta"></p>
+  </div>
+
+  <script>
+    const pedra = document.getElementById('pedra');
+    const mensagem = document.getElementById('mensagem');
+    const resposta = document.getElementById('resposta');
+    let cliqueCount = 0;
+
+    pedra.addEventListener('click', () => {
+      cliqueCount++;
+
+      if (cliqueCount === 1) {
+        pedra.src = 'pedra_2.png';
+      } else if (cliqueCount === 2) {
+        pedra.src = 'pedra_3.png';
+      } else if (cliqueCount === 3) {
+        pedra.src = 'pedra_4.png';
+      } else if (cliqueCount >= 4) {
+        pedra.style.pointerEvents = 'none';
+        mensagem.style.display = 'block';
+      }
+    });
+
+    function responder(opcao) {
+      if (opcao === 'sim') {
+        resposta.innerText = 'Dale! 💖';
+      } else {
+        resposta.innerText = 'Tudo bem... 😢';
+      }
+    }
+  </script>
+
+</body>
+</html>
